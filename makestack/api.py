@@ -17,8 +17,7 @@ def request(method, url, params=None, headers=None, files=None):
               headers=headers, files=files)
 
 
-def login(username, password):
-    baseurl = 'http://localhost:3000' # XXX
+def login(baseurl, username, password):
     url = urljoin(baseurl, 'api/auth/sign_in')
 
     r = request('POST', url, params={
