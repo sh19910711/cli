@@ -17,8 +17,8 @@ def main(argv):
     setup_device_command.add_argument('board', help='The board type.')
     setup_device_command.add_argument('path', help='The file path to the device.')
     setup_device_command.add_argument('device_name', help='The device name.')
-    setup_device_command.add_argument('--wifi-ssid', help='The Wi-Fi SSID.')
-    setup_device_command.add_argument('--wifi-password', help='The Wi-Fi password.')
+    setup_device_command.add_argument('--wifi-ssid', default='', help='The Wi-Fi SSID.')
+    setup_device_command.add_argument('--wifi-password', default='', help='The Wi-Fi password.')
     setup_device_command.add_argument('--firmware', help='The firmware file.')
     setup_device_command.add_argument('--device-secret', help='The device secret token.')
 
