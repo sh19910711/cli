@@ -29,4 +29,5 @@ deploy:
   file: "makestack-$TRAVIS_OS_NAME"
   skip_cleanup: true
   on:
+    tags: true
     condition: $TRAVIS_PYTHON_VERSION == "3.4"
