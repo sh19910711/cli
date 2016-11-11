@@ -20,12 +20,13 @@ install:
 
 script:
   - pyinstaller --name=makestack --onefile makestack/__main__.py
+  - cp dist/makestack makestack-$TRAVIS_OS_NAME
 
 deploy:
   provider: releases
   api_key:
     secure: "U/xdxJvd5sjoEyxZTShYyBfjklF0FgPFeYGG6bvwtq3NcPUS6Ips6AGNiKHsy7Amj7YNwgXmeydASJasjt+eNaK9Xs2kXK3bWezL6ytKlHaHR4Ixk5O/VJlNZkj9BWiEQbvEF8jFjK+73D6BY9wpRNDg3ymQ0uAxp/wwe9Z5BIaCwaCigSF27FwuAu7L6RiYITyENUq254zYgXEiFQS44TXkPJaFziUT7+QyVNyTj4z5sDFP/lXDJTUukuSv3I/ZdqY8R7w/rpRwyp4ihNfzXtXgysr737TYDTm9hfe5Tv5wmhDymrwd2viUROuSp1XvYUDRMPz8oFLTf0ZX+S0QcoPbGpoLZczik7ot+moG47ZV9LxCpMwI7cz68zIvZwuBpRwOoAAWvbsmUFc8qddaDZNWWk2miaMkTRpKI6q57f2TwlM6HO0HOM4el3cNU+LPNryA1ylSR0ilvwnagoXMqzNYjn5O+w18tXMv3fT5McJWmV5Hkt2wzgAsRmvHVFKyArSiJY098KBIbSt4jufl4T1Fx7orJetxwRjti5e57Qws4IGcVoMkycS44AXYBCDpwccGuc2A3YDZTtLuFfBZh7KbxFcda+8GN2sPsFiQ1kd32BWpKAwNZG1cC0579d8wLfejS52aAuAe7kVgFESprGlG677CUL8+66HzRFm6U4A="
-  file: "dist/makestack-$TRAVIS_OS_NAME"
+  file: "makestack-$TRAVIS_OS_NAME"
   skip_cleanup: true
   on:
     condition: $TRAVIS_PYTHON_VERSION == "3.4"
