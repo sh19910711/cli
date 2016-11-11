@@ -55,12 +55,12 @@ def main(args):
     with tempfile.NamedTemporaryFile() as f:
         image = open(original, 'rb').read()
 
-	image = replace_and_fill(image, "__VERY_VERY_LONG_SERVER_HOST_NAME__REPLACE_ME__", url)
-	image = replace_and_fill(image, "__PORT__REPLACE_ME__", port)
-	image = replace_and_fill(image, "__TLS__REPLACE_ME__", tls)
-	image = replace_and_fill(image, "__VERY_VERY_LONG_DEVICE_SECRET__REPLACE_ME__", device_secret)
-	image = replace_and_fill(image, "__WIFI_SSID__REPLACE_ME__", args.wifi_ssid)
-	image = replace_and_fill(image, "__WIFI_PASSWORD__REPLACE_ME__", args.wifi_password)
+        image = replace_and_fill(image, "__VERY_VERY_LONG_SERVER_HOST_NAME__REPLACE_ME__", url)
+        image = replace_and_fill(image, "__PORT__REPLACE_ME__", port)
+        image = replace_and_fill(image, "__TLS__REPLACE_ME__", tls)
+        image = replace_and_fill(image, "__VERY_VERY_LONG_DEVICE_SECRET__REPLACE_ME__", device_secret)
+        image = replace_and_fill(image, "__WIFI_SSID__REPLACE_ME__", args.wifi_ssid)
+        image = replace_and_fill(image, "__WIFI_PASSWORD__REPLACE_ME__", args.wifi_password)
 
         f.write(image)
         f.flush()
