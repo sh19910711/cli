@@ -16,10 +16,11 @@ matrix:
 
 
 install:
-  - pip install -r requirements.txt
-  - pip install pytest
-  - git clone https://github.com/pyinstaller/pyinstaller
-  - cd pyinstaller && sudo python setup.py install && cd ..
+  - "if [[ $TRAVIS_OS_NAME == osx ]]; then brew update; brew install python3; fi"
+  - pip3 install -r requirements.txt
+  - pip3 install pytest
+  - git clone --depth 1 https://github.com/pyinstaller/pyinstaller
+  - cd pyinstaller && python3 setup.py install && cd ..
 
 script:
   - pyinstaller --name=makestack --onefile makestack/__main__.py
