@@ -1,3 +1,4 @@
+import sys
 import argparse
 from makestack import commands
 
@@ -33,4 +34,9 @@ def main(argv):
     deploy_image_command.add_argument('image', help='The image file.')
 
     args = parser.parse_args(argv[1:])
+
+    if 'func' not in dir(args):
+        parser.print_help()
+        sys.exit(1)
+
     args.func(args)
