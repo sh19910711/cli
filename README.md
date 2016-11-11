@@ -7,6 +7,22 @@ MakeStack CLI
 
 A Command Line Interface for MakeStack.
 
+Installation
+------------
+
+**macOS:**
+```
+$ brew install makestack/makestack/makestack
+```
+
+
+**Linux:**
+```
+$ wget https://github.com/makestack/cli/releases/download/v0.0.1/makestack-linux
+$ chmod +x makestack-linux
+$ sudo mv makestack-linux /usr/local/bin/makestack
+```
+
 License
 -------
 
