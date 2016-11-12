@@ -42,8 +42,9 @@ def main(args):
     else:
         device_secret = args.device_secret
 
-    url = get_credentials()['url']
+    url = api.get_credentials()['url']
     parsed_url = urllib.parse.urlparse(url)
+    hostname = parsed_url.hostname
     port = str(parsed_url.port)
     tls = 'yes' if parsed_url.scheme == 'https' else 'no'
 
@@ -55,7 +56,7 @@ def main(args):
     with tempfile.NamedTemporaryFile() as f:
         image = open(original, 'rb').read()
 
-        image = replace_and_fill(image, "__VERY_VERY_LONG_SERVER_HOST_NAME__REPLACE_ME__", url)
+        image = replace_and_fill(image, "__VERY_VERY_LONG_SERVER_HOST_NAME__REPLACE_ME__", hostname)
         image = replace_and_fill(image, "__PORT__REPLACE_ME__", port)
         image = replace_and_fill(image, "__TLS__REPLACE_ME__", tls)
         image = replace_and_fill(image, "__VERY_VERY_LONG_DEVICE_SECRET__REPLACE_ME__", device_secret)
