@@ -9,7 +9,7 @@ from makestack.helpers import *
 
 
 def register_new_device(device_name, board):
-    r = api.invoke('POST', 'devices', params={ name: device_name, board: board })
+    r = api.invoke('POST', 'devices', params={ 'name': device_name, 'board': board })
     return r.json()['device_secret']
 
 
@@ -18,7 +18,7 @@ def get_stable_firmware(firmware_url):
                         os.path.basename(firmware_url))
 
     if not os.path.exists(path):
-        urllib.request.urlretrive(firmware_url, path)
+        urllib.request.urlretrieve(firmware_url, path)
 
     return path
 
