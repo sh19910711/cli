@@ -8,8 +8,9 @@ from makestack.consts import *
 
 def get_credentials():
     yml = yaml.load(open(CREDENTIAL_YAML_PATH))
-    if credentials is None:
+    if yml is None:
         error('Credentials not found. Do `makestack login`.')
+    return yml
 
 
 def request(method, url, params=None, headers=None, files=None):
@@ -40,13 +41,10 @@ def login(baseurl, username, password):
 
 def invoke(method, path, params=None, headers=None, files=None):
     credentials = get_credentials()
-    url = urljoin(credentials['url'],
-                  'api',
-                  credentials['username'],
-                  path)
+    url = urljoin(credentials['url'], 'api/{}/{}'.format(credentials['username'], path))
 
     if headers is None:
         headers = {}
 
     headers['Authorization'] = 'token ' + credentials['token']
-    request(method, url, params)
+    return request(method, url, params, headers, files)
