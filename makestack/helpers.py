@@ -18,6 +18,10 @@ def error(msg):
     sys.exit(1)
 
 
+def success(msg):
+    cprint("makestack: " + msg, 'green', attrs=['bold'])
+
+
 def progress(cmd, target):
     print('{:16}{}'.format(colored(cmd, 'cyan'), target))
 
