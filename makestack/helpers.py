@@ -18,6 +18,10 @@ def error(msg):
     sys.exit(1)
 
 
+def info(msg):
+    cprint("makestack: " + msg, 'blue', attrs=['bold'])
+
+
 def success(msg):
     cprint("makestack: " + msg, 'green', attrs=['bold'])
 
