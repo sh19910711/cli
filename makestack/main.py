@@ -9,6 +9,10 @@ def main(argv):
                         version='MakeStack CLI version {}'.format(VERSION))
     subparsers = parser.add_subparsers()
 
+    new_command = subparsers.add_parser('new')
+    new_command.set_defaults(func=commands.new.main)
+    new_command.add_argument('path', help='The path to the directory to be created.')
+
     login_command = subparsers.add_parser('login')
     login_command.set_defaults(func=commands.login.main)
 
