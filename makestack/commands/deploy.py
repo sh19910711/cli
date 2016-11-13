@@ -23,7 +23,7 @@ def main(args):
 
     # TODO: use WebSocket
     info("building...")
-    build_id = r.json()['build_id']
+    build_id = r.json()['id']
     while True:
         build = api.invoke('GET', '/apps/{}/builds/{}'.format(app_name, build_id)).json()
 
