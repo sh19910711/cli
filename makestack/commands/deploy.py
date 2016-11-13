@@ -27,9 +27,7 @@ def main(args):
     while True:
         build = api.invoke('GET', '/apps/{}/builds/{}'.format(app_name, build_id)).json()
 
-        if build.status == "deploying":
-            info("deploying...")
-        elif build.status == "success":
+        if build.status == "success":
             for l in build.log.split("\n"):
                 print(l)
             success("successfully deployed")
