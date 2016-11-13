@@ -13,6 +13,9 @@ def main(argv):
     new_command.set_defaults(func=commands.new.main)
     new_command.add_argument('path', help='The path to the directory to be created.')
 
+    config_command = subparsers.add_parser('config')
+    config_command.set_defaults(func=commands.config.main)
+
     login_command = subparsers.add_parser('login')
     login_command.set_defaults(func=commands.login.main)
 
