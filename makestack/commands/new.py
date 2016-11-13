@@ -30,6 +30,10 @@ void setup() {
 
 """
 
+GITIGNORE = """\
+/.config.yaml
+"""
+
 def main(args):
     path = args.path
     app_name = os.path.basename(path)
@@ -39,3 +43,5 @@ def main(args):
                   APPLICATION_YAML, locals())
     generate_file(os.path.join(path, 'main.cpp'),
                   MAIN_CPP)
+    generate_file(os.path.join(path, '.gitignore'),
+                  GITIGNORE)
