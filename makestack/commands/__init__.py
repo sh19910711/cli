@@ -1,5 +1,6 @@
 import makestack.commands.new
 import makestack.commands.config
+import makestack.commands.log
 import makestack.commands.login
 import makestack.commands.register
 import makestack.commands.setup_device

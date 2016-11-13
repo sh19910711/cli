@@ -16,6 +16,9 @@ def main(argv):
     config_command = subparsers.add_parser('config')
     config_command.set_defaults(func=commands.config.main)
 
+    log_command = subparsers.add_parser('log')
+    log_command.set_defaults(func=commands.log.main)
+
     login_command = subparsers.add_parser('login')
     login_command.set_defaults(func=commands.login.main)
 
