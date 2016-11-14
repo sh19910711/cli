@@ -1,5 +1,6 @@
 import os
-from makestack.helpers import error, generate_file, generate_dir
+from makestack import api
+from makestack.helpers import error, success, generate_file, generate_dir
 
 
 APPLICATION_YAML = """\
@@ -48,3 +49,4 @@ def main(args):
 
     if args.register:
         api.invoke('POST', '/apps', params={ 'app_name': app_name })
+        success("registered")

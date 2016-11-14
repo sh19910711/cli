@@ -12,7 +12,7 @@ def main(argv):
     new_command = subcommands.add_parser('new')
     new_command.set_defaults(func=commands.new.main)
     new_command.add_argument('path', help='The path to the directory to be created.')
-    new_command.add_argument('--register', help='Register the newly created app in the server.')
+    new_command.add_argument('--register', action='store_true', help='Register the newly created app in the server.')
 
     config_command = subcommands.add_parser('config')
     config_command.set_defaults(func=commands.config.main)
