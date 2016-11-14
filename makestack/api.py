@@ -7,9 +7,11 @@ from makestack.consts import *
 
 
 def get_credentials():
-    yml = yaml.load(open(CREDENTIAL_YAML_PATH))
-    if yml is None:
+    try:
+        yml = yaml.load(open(CREDENTIAL_YAML_PATH))
+    except FileNotFoundError:
         error('Credentials not found. Do `makestack login`.')
+
     return yml
 
 
