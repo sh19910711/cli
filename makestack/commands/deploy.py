@@ -3,7 +3,7 @@ import time
 import tempfile
 import shutil
 from makestack import appdir, api
-from makestack.helpers import error
+from makestack.helpers import error, info, success
 
 
 def main(args):
@@ -12,7 +12,7 @@ def main(args):
 
     with tempfile.TemporaryDirectory() as d:
         zip_path = os.path.join(d, 'makestack-source.zip')
-        shutil.make_archive(zip_path, 'zip')
+        shutil.make_archive(os.path.splitext(zip_path)[0], 'zip')
 
         r = api.invoke('POST', '/apps/{}/builds'.format(app_name),
                        files={ 'source_file': open(zip_path, 'rb') })
@@ -27,13 +27,13 @@ def main(args):
     while True:
         build = api.invoke('GET', '/apps/{}/builds/{}'.format(app_name, build_id)).json()
 
-        if build.status == "success":
-            for l in build.log.split("\n"):
+        if build['status'] == 'success':
+            for l in build['log'].split("\n"):
                 print(l)
             success("successfully deployed")
             return
-        elif build.status == "failure":
-            for l in build.log.split("\n"):
+        elif build['status'] == 'failure':
+            for l in build['log'].split("\n"):
                 print(l)
             error("failed to build")
 
