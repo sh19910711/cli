@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import datetime
 from termcolor import colored
 from makestack import appdir, api
@@ -13,16 +14,17 @@ def main(args):
     since = None
     try:
         while True:
-            r = api.invoke('GET', '/apps/{}/log'.format(app_name), { since: since })
-            for time, _, device, message in r.json().get('lines', []):
-                date = datetime.datetime.fromtimestamp(time)
+            r = api.invoke('GET', '/apps/{}/log'.format(app_name), { 'since': since })
+            for line in r.json()['log']:
+                timestamp, _, device, message = line.split(':', 3)
+                date = datetime.datetime.fromtimestamp(float(timestamp))
                 print("{date}  {device} | {message}".format(**{
                     'date': colored(date.strftime('%H:%M:%S'), 'blue'),
-                    'date': colored(device, 'magenta'),
+                    'device': colored(device, 'magenta'),
                     'message': message
                 }))
 
-                since = time
+                since = timestamp
 
             time.sleep(4)
     except KeyboardInterrupt:
