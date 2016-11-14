@@ -45,7 +45,11 @@ def main(args):
     url = api.get_credentials()['url']
     parsed_url = urllib.parse.urlparse(url)
     hostname = parsed_url.hostname
-    port = str(parsed_url.port)
+    if parsed_url.port is None:
+        port = '443' if parsed_url.scheme == 'https' else '80'
+    else:
+        port = str(parsed_url.port)
+
     tls = 'yes' if parsed_url.scheme == 'https' else 'no'
 
     if args.firmware is None:
@@ -66,3 +70,5 @@ def main(args):
         f.write(image)
         f.flush()
         board.install(args.path, f.name)
+
+    success("done")
