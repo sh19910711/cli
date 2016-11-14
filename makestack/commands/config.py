@@ -18,8 +18,9 @@ def main(args):
 
     config = DEFAULT_CONFIG
     for k, c in app_config.items():
-        c['value'] = config[k]['default']
-        del c['default']
+        if 'default' in c:
+            c['value'] = c['default']
+            del c['default']
 
         config[k] = c
 
