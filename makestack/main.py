@@ -17,6 +17,10 @@ def main(argv):
     config_command = subcommands.add_parser('config')
     config_command.set_defaults(func=commands.config.main)
 
+    add_device_command = subcommands.add_parser('add-device')
+    add_device_command.set_defaults(func=commands.add_device.main)
+    add_device_command.add_argument('device_name', help="The device name.")
+
     log_command = subcommands.add_parser('log')
     log_command.set_defaults(func=commands.log.main)
 
