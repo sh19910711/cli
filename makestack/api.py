@@ -56,3 +56,5 @@ def invoke(method, path, params=None, headers=None, files=None):
 
     if not (200 <= r.status_code <= 299):
         error("server returned {}".format(r.status_code))
+
+    return r
