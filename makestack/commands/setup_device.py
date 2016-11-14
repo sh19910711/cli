@@ -37,10 +37,14 @@ def main(args):
     except ImportError:
         error('unknown board type: {}'.format(args.board))
 
-    if args.device_secret is None:
-        device_secret = register_new_device(args.device_name, args.board)
+    if args.reinstall:
+        r = api.invoke('GET', 'devices/{}'.format(args.device_name))
+        device_secret = r.json()['device_secret']
     else:
-        device_secret = args.device_secret
+        if args.device_secret is None:
+            device_secret = register_new_device(args.device_name, args.board)
+        else:
+            device_secret = args.device_secret
 
     url = api.get_credentials()['url']
     parsed_url = urllib.parse.urlparse(url)

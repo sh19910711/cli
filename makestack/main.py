@@ -39,6 +39,7 @@ def main(argv):
     setup_device_command.add_argument('--wifi-password', default='', help='The Wi-Fi password.')
     setup_device_command.add_argument('--firmware', help='The firmware file.')
     setup_device_command.add_argument('--device-secret', help='The device secret token.')
+    setup_device_command.add_argument('--reinstall', action='store_true', help='Reinstall the firmware.')
 
     devices_command = subcommands.add_parser('devices')
     devices_command.set_defaults(func=commands.devices.main)
