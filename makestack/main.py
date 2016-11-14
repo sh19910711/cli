@@ -4,7 +4,7 @@ from makestack import commands, VERSION
 
 
 def main(argv):
-    parser = argparse.ArgumentParser(description='MakeStack CLI')
+    parser = argparse.ArgumentParser(prog='makestack', description='MakeStack CLI')
     parser.add_argument('--version', action='version',
                         version='MakeStack CLI version {}'.format(VERSION))
     subcommands = parser.add_subparsers()
