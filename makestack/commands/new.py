@@ -45,3 +45,6 @@ def main(args):
                   MAIN_CPP)
     generate_file(os.path.join(path, '.gitignore'),
                   GITIGNORE)
+
+    if args.register:
+        api.invoke('POST', '/apps', params={ 'app_name': app_name })
