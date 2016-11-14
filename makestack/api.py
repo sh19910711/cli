@@ -47,4 +47,10 @@ def invoke(method, path, params=None, headers=None, files=None):
         headers = {}
 
     headers['Authorization'] = 'token ' + credentials['token']
-    return request(method, url, params, headers, files)
+    try:
+        r = request(method, url, params, headers, files)
+    except requests.exceptions.ConnectionError as e:
+        error("connection error: {}".format(e))
+
+    if not (200 <= r.status_code <= 299):
+        error("server returned {}".format(r.status_code))
