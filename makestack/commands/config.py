@@ -5,6 +5,7 @@ from makestack.helpers import progress
 
 DEFAULT_CONFIG = {
     'BOARD': {
+        'type': 'str',
         'value': 'esp8266'
     }
 }
