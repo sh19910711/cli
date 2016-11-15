@@ -8,4 +8,4 @@ def main(args):
     app_name = appdir.get_current_app_name()
 
     api.invoke('POST', '/apps/{}/deployments'.format(app_name),
-               files={ 'image': open(image_path, 'rb') })
+               files={ 'image': open(args.image, 'rb') })
