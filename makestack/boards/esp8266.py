@@ -2,7 +2,7 @@ import subprocess
 
 
 def get_firmware_url():
-    return 'https://github.com/codestand/esp8266-firmware/releases/download/v0.0.1/firmware.bin'
+    return 'https://github.com/makestack/esp8266-firmware/releases/download/v0.0.1/firmware.bin'
 
 
 def install(serial, firmware_path):
