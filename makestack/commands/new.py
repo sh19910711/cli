@@ -20,11 +20,11 @@ MAIN_CPP = """\
 
 void setup() {
     static int i = 0;
-    int pin = 13;
+    static int pin = 13;
 
-    GPIO.set_pin_mode(pin, GPIO_OUTPUT);
+    GPIO.set_pin_mode(pin, GPIO_OUTPUT_PIN);
     Timer.set_interval(1000 /* 1000ms = 1sec */, []() {
-        GPIO.write((i % 2) ? GPIO_LOW : GPIO_HIGH);
+        GPIO.write(pin, (i % 2) ? GPIO_LOW : GPIO_HIGH);
         i++;
     });
 }
