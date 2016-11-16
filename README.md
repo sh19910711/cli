@@ -11,18 +11,18 @@ A Command Line Interface for MakeStack.
 Installation
 ------------
 
-**macOS:**
+### macOS
 Install [Homebrew](http://brew.sh/) and execute the following command:
 
 ```
 $ brew install makestack/makestack/makestack
 ```
 
-**Windows**
+### Windows
 [Download from Releases page](https://github.com/makestack/cli/releases). If you get an error something like `msvcr100.dll not found!`, install [Microsoft Visual C++ 2010 Redistributable Package](http://www.microsoft.com/download/details.aspx?id=5555).
 
 
-**Linux**
+### Linux
 [Download an executable from Release page](https://github.com/makestack/cli/releases). Want to install from source? Send us a pull request that adds `setup.py`!
 
 
