@@ -1,12 +1,12 @@
 import sys
 import argparse
-from makestack import commands, VERSION
+from makestack import commands, __version__
 
 
 def main(argv):
     parser = argparse.ArgumentParser(prog='makestack', description='MakeStack CLI')
     parser.add_argument('--version', action='version',
-                        version='MakeStack CLI version {}'.format(VERSION))
+                        version='MakeStack CLI version {}'.format(__version__))
     subcommands = parser.add_subparsers()
 
     new_command = subcommands.add_parser('new')
