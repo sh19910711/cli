@@ -25,7 +25,7 @@ install:
 script:
   - pyinstaller --name=makestack --onefile makestack/__main__.py
 
-after_script:
+before_deploy:
   - mkdir makestack-$TRAVIS_TAG
   - cp dist/makestack makestack-$TRAVIS_TAG
   - tar cf makestack-$TRAVIS_TAG.tar.gz makestack-$TRAVIS_TAG
