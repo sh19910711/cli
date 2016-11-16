@@ -1,0 +1,29 @@
+environment:
+  matrix:
+    - PYTHON: "C:\\Python34"
+      PYTHON_VERSION: "3.4.2"
+      PYTHON_ARCH: "64"
+
+
+init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+
+install:
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - "pip install -r requirements.txt"
+  - "pip install pyinstaller"
+
+build_script:
+  - "pyinstaller --name=makestack --onefile makestack/__main__.py"
+
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: "L8CHiS07+Omghl0dau6FthNt+sSuOM/PQ/rU0rTgJFEcdOm1pTm9bNiFesk4nOUk"
+  artifact: "dist\\makestack.exe"
+  draft: false
+  prerelease: false
+  on:
+    branch: master
+    appveyor_repo_tag: true
+
