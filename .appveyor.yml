@@ -22,14 +22,14 @@ build_script:
   - 7z a %ZIP% %ZIP_DIR%
 
 artifacts:
-  - path: /.*\.zip/
+  - path: "*.zip"
     name: MakeStack CLI for Windows
 
 deploy:
   provider: GitHub
   auth_token:
     secure: "EXEQzZdMY88qHnSOpHCtyvuTmYa1VKPRK6Ysbp9EVOhvR2embyFKeIKja+GNilj/"
-  artifact: "dist\\makestack.exe"
+  artifact: ".*.zip"
   draft: false
   prerelease: false
   on:
