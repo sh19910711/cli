@@ -16,6 +16,10 @@ install:
 build_script:
   - "pyinstaller --name=makestack --onefile makestack/__main__.py"
 
+artifacts:
+  - path: "dist\\makestack.exe"
+    name: MakeStack CLI for Windows
+
 deploy:
   provider: GitHub
   auth_token:
