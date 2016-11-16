@@ -23,7 +23,7 @@ artifacts:
 deploy:
   provider: GitHub
   auth_token:
-    secure: "L8CHiS07+Omghl0dau6FthNt+sSuOM/PQ/rU0rTgJFEcdOm1pTm9bNiFesk4nOUk"
+    secure: "yUFXb+oOy+IFTA58XEcL+iX6VP4AO77z/oQfMIbPW0tYhU9pPz8PgbXpla3cBSrQ"
   artifact: "dist\\makestack.exe"
   draft: false
   prerelease: false
