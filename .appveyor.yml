@@ -15,7 +15,7 @@ install:
 
 build_script:
   - "pyinstaller --name=makestack --onefile makestack/__main__.py"
-  - SET ZIP=makestack-%APPVEYOR_REPO_TAG_NAME%.windows.zip
+  - SET ZIP=makestack-%APPVEYOR_REPO_TAG_NAME%-windows.zip
   - SET ZIP_DIR=makestack-%APPVEYOR_REPO_TAG_NAME%
   - mkdir %ZIP_DIR%
   - cp dist\makestack.exe %ZIP_DIR%

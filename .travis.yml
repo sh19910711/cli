@@ -28,14 +28,14 @@ script:
 before_deploy:
   - mkdir makestack-$TRAVIS_TAG
   - cp dist/makestack makestack-$TRAVIS_TAG
-  - tar cf makestack-$TRAVIS_TAG.$TRAVIS_OS_NAME.tar.gz makestack-$TRAVIS_TAG
+  - tar cf makestack-$TRAVIS_TAG-$TRAVIS_OS_NAME.tar.gz makestack-$TRAVIS_TAG
 
 deploy:
   provider: releases
   draft: true
   api_key:
     secure: "NNmLDhiPqFX8o7mPqnmLaYUQBlwIDO/WLWnAQLGG6B7mH+r1Ac1ETrJzIlbXQa6gif6yMOXKAyjx+wT0x1tAfRa0RCQoqHvMkdojgZOUOQHBvqNhVbOeDLb7xEKdDEhPkt6dH+9bUxpcFgg1wBEIDvalc64i9HElmH5uhEEi44QbWYTAAkywwSvCwwu19+RACpRFcZP7BW/d6/u+MnZe2Guf5kkrHG+6Thplec6dXKw3biEQOEQrtLaFNpWBwa6gG7DamAsy5531Apu0mgAPPe8H2hNf4CBSG7yGlYnRoa1A/daGCV23yfR5QNDdDxWoNhNtzK6ewbOURM7aDPLd+P452NoH2YMO6kT5K6aaSCzpr9mhWUyO922qvc7333immMBLpL+1om6TSIhKL3kM4lrq6DZFPilKfVPAhYFl+nFrMSZ2D2c7NC+bRA6dUKgCwAqa05uVV8GM8jjCe66NhpmMkQTi3V56XuokNSSP6enE7Du1+GAQuxIMZj1PTCHDFio5I8J5me0JuPqxdCy+JmqnUiqJsg2kDOUBs9lQjrwaqGnB3RtEDKtsbkbI2tHOGtAPP2ZH91vjsu8ylbben6CUle4z6HxcncOGHJQyAPBk9WNz0mCCzNJ5HzY+V/yQlz6hE/4ovknlhZ5fv7CVd6wRsWzJZkaMseG4jin2ONo="
-  file: makestack-$TRAVIS_TAG.$TRAVIS_OS_NAME.tar.gz
+  file: makestack-$TRAVIS_TAG-$TRAVIS_OS_NAME.tar.gz
   skip_cleanup: true
   on:
     tags: true
