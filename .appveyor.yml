@@ -30,7 +30,7 @@ deploy:
   auth_token:
     secure: "EXEQzZdMY88qHnSOpHCtyvuTmYa1VKPRK6Ysbp9EVOhvR2embyFKeIKja+GNilj/"
   artifact: ".*.zip"
-  draft: false
+  draft: true
   prerelease: false
   on:
     branch: master
