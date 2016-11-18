@@ -14,10 +14,11 @@ def register_new_device(device_name, board):
 
 
 def get_stable_firmware(firmware_url):
-    path = os.path.join(CONFIG_DIR_PATH, 'cache', 'firmware',
-                        os.path.basename(firmware_url))
+    firmware_cache_dir = os.path.join(CONFIG_DIR_PATH, 'cache', 'firmware')
+    path = os.path.join(firmware_cache_dir, os.path.basename(firmware_url))
 
     if not os.path.exists(path):
+        os.makedirs(firmware_cache_dir, exist_ok=True)
         urllib.request.urlretrieve(firmware_url, path)
 
     return path
