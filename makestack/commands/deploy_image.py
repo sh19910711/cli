@@ -8,4 +8,5 @@ def main(args):
     app_name = appdir.get_current_app_name()
 
     api.invoke('POST', '/apps/{}/deployments'.format(app_name),
+               data={ 'comment': args.comment },
                files={ 'image': open(args.image, 'rb') })
