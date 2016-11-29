@@ -2,3 +2,4 @@ pyyaml
 requests
 termcolor
 jinja2
+dulwich

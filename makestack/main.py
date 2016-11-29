@@ -63,6 +63,7 @@ def main(argv):
 
     deploy_command = subcommands.add_parser('deploy')
     deploy_command.set_defaults(func=commands.deploy.main)
+    deploy_command.add_argument('--comment', help="The deployment comment.")
 
     deploy_image_command = subcommands.add_parser('deploy-image')
     deploy_image_command.set_defaults(func=commands.deploy_image.main)
