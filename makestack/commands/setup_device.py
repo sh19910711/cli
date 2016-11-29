@@ -74,6 +74,12 @@ def main(args):
 
         f.write(image)
         f.flush()
-        board.install(args.path, f.name)
+
+        if args.device_path is None:
+            dev_file = detect_device_path()
+        else:
+            dev_file = args.device_path
+
+        board.install(dev_file, f.name)
 
     success("done")

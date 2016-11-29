@@ -1,4 +1,6 @@
+import glob
 import os
+import re
 import sys
 import jinja2
 from termcolor import cprint, colored
@@ -36,6 +38,24 @@ def generate_dir(path):
         os.makedirs(path)
     except FileExistsError:
         error("'{}' already exists".format(path))
+
+
+def detect_device_path():
+    DEVICE_FILE_PATTERNS = [ r"ttyUSB[0-9]", "tty.usbserial-" ]
+    files = []
+
+    for path in glob.glob("/dev/tty*"):
+        filename = os.path.basename(path)
+        for pattern in DEVICE_FILE_PATTERNS:
+            if re.match(pattern, filename) is not None:
+                files.append(path)
+
+    if len(files) == 0:
+        error("No devices found.")
+    elif len(files) > 1:
+        error("Multiple device found. Speicify by --device-path.")
+
+    return files[0]
 
 
 def generate_file(path, tmpl, args=None):
