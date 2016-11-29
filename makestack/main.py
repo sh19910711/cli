@@ -41,6 +41,10 @@ def main(argv):
     setup_device_command.add_argument('--device-secret', help='The device secret token.')
     setup_device_command.add_argument('--reinstall', action='store_true', help='Reinstall the firmware.')
 
+    serial_command = subcommands.add_parser('serial')
+    serial_command.set_defaults(func=commands.serial.main)
+    serial_command.add_argument('--device-path', help='The file path to the device file')
+
     devices_command = subcommands.add_parser('devices')
     devices_command.set_defaults(func=commands.devices.main)
 
