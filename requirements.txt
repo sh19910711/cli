@@ -3,3 +3,4 @@ requests
 termcolor
 jinja2
 dulwich
+pyserial
