@@ -11,9 +11,9 @@ matrix:
       python: nightly
     - os: osx
       osx_image: xcode8.2
+      language: generic
   allow_failures:
     - python: nightly
-
 
 install:
   - "if [[ $TRAVIS_OS_NAME == osx ]]; then brew update; brew install python3; fi"
