@@ -2,7 +2,9 @@ import os
 from makestack.helpers import error
 
 
-def require_app_root_dir():
+def chdir_to_app_dir(appdir):
+     os.chdir(appdir)
+
      if not os.path.exists('application.yaml'):
          error("You aren't in an app root directory")
 

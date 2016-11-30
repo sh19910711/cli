@@ -11,7 +11,7 @@ DEFAULT_CONFIG = {
 }
 
 def main(args):
-    appdir.require_app_root_dir()
+    appdir.chdir_to_app_dir(args.appdir)
 
     application_yaml = yaml.load(open('application.yaml'))
     app_config = {} if application_yaml['config'] is None else application_yaml['config']

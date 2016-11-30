@@ -4,7 +4,7 @@ from makestack.helpers import error
 
 
 def main(args):
-    appdir.require_app_root_dir()
+    appdir.chdir_to_app_dir(args.appdir)
     app_name = appdir.get_current_app_name()
 
     api.invoke('POST', '/apps/{}/deployments'.format(app_name),
