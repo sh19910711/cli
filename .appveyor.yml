@@ -30,7 +30,7 @@ deploy:
   auth_token:
     secure: "EXEQzZdMY88qHnSOpHCtyvuTmYa1VKPRK6Ysbp9EVOhvR2embyFKeIKja+GNilj/"
   artifact: MakeStack CLI for Windows
-  draft: true
+  draft: false
   prerelease: false
   on:
     branch: master
