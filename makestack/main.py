@@ -16,12 +16,12 @@ def main(argv):
 
     config_command = subcommands.add_parser('config')
     config_command.set_defaults(func=commands.config.main)
-    config_command.add_argument('--appdir', default='.', help='The app directory')
+    config_command.add_argument('--appdir', default='.', help='The app directory.')
 
     add_device_command = subcommands.add_parser('add-device')
     add_device_command.set_defaults(func=commands.add_device.main)
     add_device_command.add_argument('device_name', help="The device name.")
-    add_device_command.add_argument('--appdir', default='.', help='The app directory')
+    add_device_command.add_argument('--appdir', default='.', help='The app directory.')
 
     log_command = subcommands.add_parser('log')
     log_command.set_defaults(func=commands.log.main)
@@ -31,7 +31,7 @@ def main(argv):
 
     register_command = subcommands.add_parser('register')
     register_command.set_defaults(func=commands.register.main)
-    config_command.add_argument('--appdir', default='.', help='The app directory')
+    register_command.add_argument('--appdir', default='.', help='The app directory.')
 
     setup_device_command = subcommands.add_parser('setup-device')
     setup_device_command.set_defaults(func=commands.setup_device.main)
@@ -66,13 +66,13 @@ def main(argv):
 
     deploy_command = subcommands.add_parser('deploy')
     deploy_command.set_defaults(func=commands.deploy.main)
-    deploy_command.add_argument('--appdir', default='.', help='The app directory')
+    deploy_command.add_argument('--appdir', default='.', help='The app directory.')
     deploy_command.add_argument('--comment', help="The deployment comment.")
 
     deploy_image_command = subcommands.add_parser('deploy-image')
     deploy_image_command.set_defaults(func=commands.deploy_image.main)
     deploy_image_command.add_argument('image', help='The image file.')
-    deploy_image_command.add_argument('--appdir', default='.', help='The app directory')
+    deploy_image_command.add_argument('--appdir', default='.', help='The app directory.')
     deploy_image_command.add_argument('--comment', help="The deployment comment.")
 
     args = parser.parse_args(argv[1:])
