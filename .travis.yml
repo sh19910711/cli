@@ -10,7 +10,7 @@ matrix:
       language: python
       python: nightly
     - os: osx
-      language: generic
+      osx_image: xcode8.2
   allow_failures:
     - python: nightly
 
