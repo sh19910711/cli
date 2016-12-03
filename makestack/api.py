@@ -31,13 +31,16 @@ def login(baseurl, username, password):
     if 'Token' not in r.headers:
         error('authentication failed')
 
-    token = r.headers['Token']
+    headers = {}
+    for k, v in r.headers.items():
+        if k in ["access-token", "token-type", "client", "expiry", "uid"]:
+            headers[k] = v
 
     os.makedirs(CONFIG_DIR_PATH, exist_ok=True)
     open(CREDENTIAL_YAML_PATH, 'w').close()
     os.chmod(CREDENTIAL_YAML_PATH, 0o600)
 
-    yaml.dump({ "username": username, "url": baseurl, "token": token },
+    yaml.dump({ "username": username, "url": baseurl, "auth": headers },
               open(CREDENTIAL_YAML_PATH, 'w'))
 
 
@@ -48,7 +51,8 @@ def invoke(method, path, params=None, headers=None, files=None):
     if headers is None:
         headers = {}
 
-    headers['Authorization'] = 'token ' + credentials['token']
+    headers.update(credentials["auth"])
+
     try:
         r = request(method, url, params, headers, files)
     except requests.exceptions.ConnectionError as e:
