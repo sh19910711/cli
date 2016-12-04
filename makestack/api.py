@@ -24,11 +24,11 @@ def login(baseurl, username, password):
     url = urljoin(baseurl, 'api/auth/sign_in')
 
     r = request('POST', url, params={
-        "username": username,
+        "name": username,
         "password": password
     })
 
-    if 'Token' not in r.headers:
+    if 'Access-Token' not in r.headers:
         error('authentication failed')
 
     headers = {}
