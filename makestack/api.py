@@ -33,7 +33,7 @@ def login(baseurl, username, password):
 
     headers = {}
     for k, v in r.headers.items():
-        if k in ["access-token", "token-type", "client", "expiry", "uid"]:
+        if k.lower() in ["access-token", "token-type", "client", "expiry", "uid"]:
             headers[k] = v
 
     os.makedirs(CONFIG_DIR_PATH, exist_ok=True)
