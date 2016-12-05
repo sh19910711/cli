@@ -6,5 +6,5 @@ def get_firmware_url():
 
 
 def install(serial, firmware_path):
-    subprocess.run(['esptool', '-v', '-cd', 'ck', '-cb', '921600',
+    subprocess.run(['esptool', '-v', '-cd', 'ck', '-cb', '115200',
                     '-cp', serial, '-ca', '0x00000', '-cf', firmware_path])
