@@ -59,6 +59,16 @@ def invoke(method, path, params=None, headers=None, files=None):
         error("connection error: {}".format(e))
 
     if not (200 <= r.status_code <= 299):
-        error("server returned {}".format(r.status_code))
+        j = r.json()
+        if "error" in j:
+            if "validation_errors" in j:
+                details = ""
+                for column, msgs in j["validation_errors"].items():
+                    for msg in msgs:
+                        details += "\n- `{}' {}".format(column, msg)
+            else:
+                details = ""
+
+            error("server ({}): {}{}".format(r.status_code, j["error"], details))
 
     return r
