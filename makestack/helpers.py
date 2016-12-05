@@ -51,7 +51,7 @@ def detect_device_path():
                 files.append(path)
 
     if len(files) == 0:
-        error("No devices found.")
+        error("No device files found. Connect your device or specify by --device-path.")
     elif len(files) > 1:
         error("Multiple device found. Speicify by --device-path.")
 
