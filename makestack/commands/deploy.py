@@ -44,7 +44,7 @@ def main(args):
         shutil.make_archive(os.path.splitext(zip_path)[0], 'zip')
 
         r = api.invoke('POST', '/apps/{}/builds'.format(app_name),
-                       data={ 'comment': comment },
+                       params={ 'comment': comment },
                        files={ 'source_file': open(zip_path, 'rb') })
 
 
