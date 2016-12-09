@@ -1,3 +1,7 @@
+sudo: required
+services:
+  - docker
+
 matrix:
   include:
     - os: linux
@@ -16,6 +20,12 @@ install:
   - "if [[ $TRAVIS_OS_NAME == osx ]]; then brew update; brew install python3; fi"
   - pip3 install -r requirements.txt
   - pip3 install -r test-requirements.txt
+
+before_script:
+  - make setup
+  - make server &
+  - sleep 5
+  - make init
 
 script:
   - make test
