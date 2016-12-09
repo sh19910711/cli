@@ -58,6 +58,9 @@ def invoke(method, path, params=None, headers=None, files=None):
     except requests.exceptions.ConnectionError as e:
         error("connection error: {}".format(e))
 
+    if 500 <= r.status_code <= 599:
+        error("server: something went wrong :(")
+
     if not (200 <= r.status_code <= 299):
         j = r.json()
         if "error" in j:
