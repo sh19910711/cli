@@ -8,5 +8,5 @@ def list_(args):
 
 
 def set_(args):
-    api.invoke('GET', '/devices/{}/envvars/{}'.format(
+    api.invoke('PUT', '/devices/{}/envvars/{}'.format(
         args.device_name, args.key), params={ "value": args.value })
