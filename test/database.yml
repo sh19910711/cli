@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: makestack_cli
+  username: makestack_cli
+  password: 12345678
+  pool: 5
+  timeout: 5000

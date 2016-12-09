@@ -12,14 +12,20 @@ pyinstaller:
 
 server:
 	git clone https://github.com/makestack/server
+	cp test/database.yml server/config/database.yml
 	cd server
+	psql postgres -c "create role makestack_cli with createdb login password '12345678'"
 	bundle install --jobs 2
-	bundle exec rails db:migrate
+	bundle exec rails db:setup
+
+tmp/postgres:
+	mkdir -p $@
+	initdb $@
 
 build: pyinstaller
 	pyinstaller --name=makestack --onefile makestack/__main__.py
 
-test: server
-	PYTHONPATH=. py.test
+test: server tmp/postgres
+	PYTHONPATH=. py.test $(TARGETS)
 
 $(VERBOSE).SILENT:
