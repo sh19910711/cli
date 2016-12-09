@@ -12,14 +12,15 @@ def remove_dirs():
     shutil.rmtree("tmp/test", ignore_errors=True)
 
 
+server_dir = os.path.abspath("server")
 @pytest.yield_fixture
 def server():
     remove_dirs()
     rb = "require 'database_cleaner'; DatabaseCleaner.strategy = :truncation; DatabaseCleaner.clean"
     subprocess.Popen(["bundle", "exec", "rails", "runner", rb],
-                     cwd=os.path.abspath("server")).wait()
+                     cwd=server_dir).wait()
     subprocess.Popen(["bundle", "exec", "rails", "db:seed"],
-                     cwd=os.path.abspath("server")).wait()
+                     cwd=server_dir).wait()
     makestack.main.main(['makestack', 'login'])
     yield
     remove_dirs()

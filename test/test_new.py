@@ -6,9 +6,6 @@ from helpers import *
 def test_new(server):
     app_name = "hello"
     run(["new", "--register", app_name])
-    os.chdir(app_name)
-    run(["register"])
-    os.chdir("..")
 
     path = "hello/application.yaml"
     assert os.path.exists(path)

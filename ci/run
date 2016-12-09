@@ -1,0 +1,14 @@
+#!/bin/sh
+set -ue
+
+cd server
+export RAILS_ENV=development
+bundle exec rails server -p 31313 &
+bundle exec sidekiq -C config/sidekiq.yml &
+cd ..
+
+sleep 5
+make test
+
+kill $(jobs -p)
+wait

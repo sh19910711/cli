@@ -1,11 +1,18 @@
+notifications:
+  on_success: change
+  on_failure: change
+
 sudo: required
 services:
   - docker
+  - postgresql
+  - redis-server
 
 matrix:
   include:
     - os: linux
       language: python
+      dist: trusty
       python: 3.5
     - os: linux
       language: python
@@ -17,19 +24,20 @@ matrix:
     - python: nightly
 
 install:
-  - "if [[ $TRAVIS_OS_NAME == osx ]]; then brew update; brew install python3; fi"
+  - "if [[ $TRAVIS_OS_NAME == osx ]]; then brew update; brew install ruby python3 postgresql redis; fi"
   - pip3 install -r requirements.txt
   - pip3 install -r test-requirements.txt
 
 before_script:
-  - make setup
-  - make server &
-  - sleep 5
-  - make init
+  - export PATH=/usr/local/bin:$PATH
+  - git clone https://github.com/makestack/server
+  - cp ci/database.yml server/config/database.yml
+  - cd server && bundle install --jobs 2 --without mysql sqlite3 && cd ..
+  - cd server && RAILS_ENV=development bundle exec rails db:setup && cd ..
 
 script:
-  - make test
-  - make
+  - "if [[ $TRAVIS_OS_NAME == linux ]]; then ./ci/run; fi"
+  - make build
 
 before_deploy:
   - mkdir makestack-$TRAVIS_TAG
