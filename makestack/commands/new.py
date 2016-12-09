@@ -7,6 +7,7 @@ APPLICATION_YAML = """\
 api: 1
 name: {{ app_name }}
 lang: c++
+plugins: []
 
 sources:
   - main.cpp
