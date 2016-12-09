@@ -8,6 +8,7 @@ import makestack
 
 def remove_dirs():
     shutil.rmtree("hello", ignore_errors=True)
+    shutil.rmtree("hello2", ignore_errors=True)
     shutil.rmtree("tmp/test", ignore_errors=True)
 
 

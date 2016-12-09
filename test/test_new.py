@@ -1,12 +1,15 @@
 import os
-import shutil
 import yaml
-import makestack
+from helpers import *
 
 
 def test_new(server):
     app_name = "hello"
-    makestack.main.main(['makestack', 'new', '--register', app_name])
+    run(["new", "--register", app_name])
+    os.chdir(app_name)
+    run(["register"])
+    os.chdir("..")
+
     path = "hello/application.yaml"
     assert os.path.exists(path)
 
@@ -15,3 +18,5 @@ def test_new(server):
     assert "lang"   in yml
     assert "name"   in yml
     assert app_name in yml["name"]
+
+    assert rails("App.find_by_name('{}')".format(app_name)) != ""

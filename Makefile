@@ -1,6 +1,7 @@
-.PHONY: build test
+.PHONY: build setup server test
 
 # for test
+TARGETS ?= test
 export MAKESTACK_SERVER_URL = http://localhost:31313
 export MAKESTACK_USERNAME   = luke
 export MAKESTACK_PASSWORD   = 12345678
@@ -10,13 +11,16 @@ pyinstaller:
 	git clone --depth 1 https://github.com/pyinstaller/pyinstaller
 	cd pyinstaller && python3 setup.py install
 
-server:
+setup:
 	git clone https://github.com/makestack/server
 	cp test/database.yml server/config/database.yml
 	cd server
 	psql postgres -c "create role makestack_cli with createdb login password '12345678'"
 	bundle install --jobs 2
 	bundle exec rails db:setup
+
+server:
+	foreman start -d $(PWD) -f test/Procfile
 
 tmp/postgres:
 	mkdir -p $@
