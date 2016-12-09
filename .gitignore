@@ -1,4 +1,5 @@
 *.pyc
 *.spec
+/server
 /build
 /dist
