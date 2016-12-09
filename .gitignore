@@ -1,5 +1,6 @@
 *.pyc
 *.spec
+/.cache
 /server
 /build
 /dist
