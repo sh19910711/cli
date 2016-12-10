@@ -4,7 +4,7 @@ import makestack
 
 
 def test_login(server_no_login):
-    makestack.main.main(['makestack', 'login'])
+    run(['login'])
     credentials_path = "tmp/test/config/credentials.yaml"
     assert os.path.exists(credentials_path)
 
