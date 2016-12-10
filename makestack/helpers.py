@@ -1,4 +1,5 @@
 import glob
+import getpass
 import os
 import re
 import sys
@@ -65,3 +66,13 @@ def generate_file(path, tmpl, args=None):
     progress('GEN', path)
     with open(path, 'w') as f:
         f.write(jinja2.Template(tmpl).render(args))
+
+
+def get_env_or_ask(env, prompt, password=False):
+    v = os.environ.get(env)
+
+    if v is None:
+        ask = getpass.getpass if password else input
+        return ask(prompt + ": ")
+    else:
+        return v
