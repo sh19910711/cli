@@ -29,11 +29,7 @@ install:
   - pip3 install -r test-requirements.txt
 
 before_script:
-  - export PATH=/usr/local/bin:$PATH
-  - git clone https://github.com/makestack/server
-  - cp ci/database.yml server/config/database.yml
-  - cd server && bundle install --jobs 2 --without mysql sqlite3 && cd ..
-  - cd server && RAILS_ENV=development bundle exec rails db:setup && cd ..
+  - "if [[ $TRAVIS_OS_NAME == linux ]]; then ./ci/setup; fi"
 
 script:
   - "if [[ $TRAVIS_OS_NAME == linux ]]; then ./ci/run; fi"
