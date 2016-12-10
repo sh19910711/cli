@@ -10,3 +10,4 @@ import makestack.commands.add_device
 import makestack.commands.devices
 import makestack.commands.deploy
 import makestack.commands.deploy_image
+import makestack.commands.user

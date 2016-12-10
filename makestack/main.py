@@ -51,6 +51,12 @@ def main(argv):
     devices_command = subcommands.add_parser('devices')
     devices_command.set_defaults(func=commands.devices.main)
 
+    user_command = subcommands.add_parser('user')
+    user_commands = user_command.add_subparsers()
+
+    user_change_password_command = user_commands.add_parser('change-password')
+    user_change_password_command.set_defaults(func=commands.user.change_password)
+
     env_command = subcommands.add_parser('env')
     env_commands = env_command.add_subparsers()
 

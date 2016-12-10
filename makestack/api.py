@@ -44,9 +44,14 @@ def login(baseurl, username, password):
               open(CREDENTIAL_YAML_PATH, 'w'))
 
 
-def invoke(method, path, params=None, headers=None, files=None):
+def invoke(method, path, params=None, headers=None, files=None, prepend_user_path=True):
     credentials = get_credentials()
-    url = urljoin(credentials['url'], 'api/{}/{}'.format(credentials['username'], path))
+
+    if prepend_user_path:
+        url = urljoin(credentials['url'], 'api/{}/{}'.format(
+            credentials['username'], path))
+    else:
+        url = urljoin(credentials['url'], 'api/{}'.format(path))
 
     if headers is None:
         headers = {}
