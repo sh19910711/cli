@@ -3,8 +3,8 @@ set -u
 
 cd server
 export RAILS_ENV=development
-bundle exec rails server -p 31313 2>&1 &
-bundle exec sidekiq -C config/sidekiq.yml 2>&1 &
+bundle exec rails server -p 31313         > /dev/null 2>&1 &
+bundle exec sidekiq -C config/sidekiq.yml > /dev/null 2>&1 &
 cd ..
 
 sleep 5
