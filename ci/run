@@ -8,7 +8,7 @@ bundle exec sidekiq -C config/sidekiq.yml > /dev/null 2>&1 &
 cd ..
 
 sleep 5
-make test
+make ci-test
 result=$?
 
 if [ $result != 0 ]; then

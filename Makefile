@@ -32,4 +32,7 @@ build: pyinstaller
 test:
 	PYTHONPATH=. py.test $(TARGETS)
 
+ci test:
+	PYTHONPATH=. py.test --cov=makesstack $(TARGETS)
+
 $(VERBOSE).SILENT:

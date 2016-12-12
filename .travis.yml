@@ -8,6 +8,11 @@ services:
   - postgresql
   - redis-server
 
+addons:
+  code_climate:
+    repo_token:
+      secure: "MwQr5qEvy3Q9WJmT+IU+/qSabdFEtqWqqVlLLZB8ltKy/b4X9exyNf79kEZvnWlQy+bhCGNl8leEc6EHuRkCLuVhpARpG4vQciquYU49dN1ofgzREvqB3X0I9ujgxhKCrr15JTBNzIQR9ftbohcgylt/mHOchrsFumtqqT4/V9Ip5Xg4GJ1DFNNnDT6bP9X5N4uPSUXwd03qhoLn0SlhorlkfwWbI5e6gmIt9XVjNDZzA0DzBYVOgxfFQWROgHsjxRAQwv3gp6YEJnX6MM/bxjTfxv3dDvi5xSo2zLNnpMjYDeBi2+ZlOAsjcOfp8RSKVDsW3EHMrDBKmrV8rf2wzxNzDQpIyOTx75202ZWd4QirQZ86/R2nKnDXR6KwoYSLS3JFi2UUS3t97Gg/yOrswfLD4EzbcrKKN3fSiB+ySiWxvElsDzddzyyWzuTW8qtcGwQ4X1S04yV2tAvvAfvBD/GDRS+Zgp9oAOSlQwltHdYgFn6J608AVxaDK/uP6UjU8odoM6q8ePCQYbXABuOrCPTvmHu7KsmMF5HIKhVYptRgAZHOFSzTT3lCWcGqEYbr/t9nZG4PdRsmN9u4r4qqgZR3w2WuHXxzOEDwHPsYKFLj0L0ALaLCp39q/6WH/QFg9olILaMYW3SfJDTX6u9Dp4OfxXIvNWKw7Jh9PPRhZW4="
+
 matrix:
   include:
     - os: linux
@@ -34,6 +39,9 @@ before_script:
 script:
   - "if [[ $TRAVIS_OS_NAME == linux ]]; then ./ci/run; fi"
   - make build
+
+after_script:
+  - codeclimate-test-reporter
 
 before_deploy:
   - mkdir makestack-$TRAVIS_TAG
