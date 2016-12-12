@@ -33,6 +33,6 @@ test:
 	PYTHONPATH=. py.test $(TARGETS)
 
 ci-test:
-	PYTHONPATH=. py.test --cov=makesstack $(TARGETS)
+	PYTHONPATH=. py.test --cov=makestack $(TARGETS)
 
 $(VERBOSE).SILENT:
