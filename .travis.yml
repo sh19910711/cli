@@ -41,7 +41,7 @@ script:
   - make build
 
 after_script:
-  - "if [[ $TRAVIS_OS_NAME == "3.5" && $TRAVIS_OS_NAME == "linux" ]]; then codeclimate-test-reporter; fi"
+  - "if [[ $TRAVIS_OS_NAME == 3.5 && $TRAVIS_OS_NAME == linux ]]; then codeclimate-test-reporter; fi"
 
 before_deploy:
   - mkdir makestack-$TRAVIS_TAG
