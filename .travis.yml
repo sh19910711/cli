@@ -41,7 +41,7 @@ script:
   - make build
 
 after_script:
-  - "if [[ $TRAVIS_OS_NAME == 3.5 && $TRAVIS_OS_NAME == linux ]]; then codeclimate-test-reporter; fi"
+  - "if [[ $TRAVIS_PYTHON_VERSION == 3.5 && $TRAVIS_OS_NAME == linux ]]; then codeclimate-test-reporter; fi"
 
 before_deploy:
   - mkdir makestack-$TRAVIS_TAG
@@ -56,4 +56,4 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    condition: '$TRAVIS_OS_NAME == "3.5" || $TRAVIS_OS_NAME == "osx"'
+    condition: '$TRAVIS_PYTHON_VERSION == "3.5" || $TRAVIS_OS_NAME == "osx"'
