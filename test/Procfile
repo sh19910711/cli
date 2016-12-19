@@ -1,4 +1,3 @@
 server:   cd server && bundle exec rails server -p 31313
-postgres: postgres -D tmp/postgres
 redis:    redis-server test/redis.conf
 sidekiq:  cd server && bundle exec sidekiq -C config/sidekiq.yml

@@ -14,13 +14,8 @@ pyinstaller:
 setup:
 	git clone https://github.com/makestack/server
 	cp test/database.yml server/config/database.yml
-	mkdir -p tmp/postgres
-	initdb tmp/postgres
 	gem install foreman
 	cd server && bundle install --jobs 2 --without mysql sqlite3
-
-init:
-	psql postgres -c "create role makestack_cli with createdb login password '12345678'"
 	cd server && RAILS_ENV=development bundle exec rails db:setup
 
 server:
