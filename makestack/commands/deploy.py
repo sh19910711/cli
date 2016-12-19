@@ -48,23 +48,27 @@ def main(args):
                        files={ 'source_file': open(zip_path, 'rb') })
 
 
-    if r.status_code != 202:
+    if r.status_code != 200:
         error("something wrong with MakeStack Server")
 
     # TODO: use WebSocket
     info("building...")
-    ver = r.json()['version']
-    while True:
-        deployment = api.invoke('GET', '/apps/{}/deployments/{}'.format(app_name, ver)).json()
+    failed = False
+    for deployment in r.json()["deployments"]:
+        ver = deployment["ver"]
+        while True:
+            path = '/apps/{}/deployments/{}'.format(app_name, ver)
+            status = api.invoke('GET', path).json().get("status")
 
-        if deployment['status'] == 'success':
-            for l in deployment['buildlog'].split("\n"):
-                print(l)
-            success("successfully deployed")
-            return
-        elif deployment['status'] == 'failure':
-            for l in deployment['buildlog'].split("\n"):
-                print(l)
-            error("failed to deployment")
+            if status == 'success':
+                break
+            elif status == 'failure':
+                failed = True
+                error("failed to deploy (board: {})".format(deployment.board))
+                for l in deployment['buildlog'].split("\n"):
+                    print(l)
 
-        time.sleep(3)
+            time.sleep(3)
+
+    if not failed:
+        success("successfully deployed")
