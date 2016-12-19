@@ -43,7 +43,7 @@ def main(args):
         zip_path = os.path.join(d, 'makestack-source.zip')
         shutil.make_archive(os.path.splitext(zip_path)[0], 'zip')
 
-        r = api.invoke('POST', '/apps/{}/builds'.format(app_name),
+        r = api.invoke('POST', '/apps/{}/deployments'.format(app_name),
                        params={ 'comment': comment },
                        files={ 'source_file': open(zip_path, 'rb') })
 
@@ -53,18 +53,18 @@ def main(args):
 
     # TODO: use WebSocket
     info("building...")
-    build_id = r.json()['id']
+    ver = r.json()['version']
     while True:
-        build = api.invoke('GET', '/apps/{}/builds/{}'.format(app_name, build_id)).json()
+        deployment = api.invoke('GET', '/apps/{}/deployments/{}'.format(app_name, ver)).json()
 
-        if build['status'] == 'success':
-            for l in build['log'].split("\n"):
+        if deployment['status'] == 'success':
+            for l in deployment['buildlog'].split("\n"):
                 print(l)
             success("successfully deployed")
             return
-        elif build['status'] == 'failure':
-            for l in build['log'].split("\n"):
+        elif deployment['status'] == 'failure':
+            for l in deployment['buildlog'].split("\n"):
                 print(l)
-            error("failed to build")
+            error("failed to deployment")
 
         time.sleep(3)
