@@ -55,7 +55,7 @@ def main(args):
     info("building...")
     failed = False
     for deployment in r.json()["deployments"]:
-        ver = deployment["ver"]
+        ver = deployment["version"]
         while True:
             path = '/apps/{}/deployments/{}'.format(app_name, ver)
             status = api.invoke('GET', path).json().get("status")
